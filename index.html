@@ -242,12 +242,8 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gr
     <p style="font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:18px">UK's First Independent Heavy Metal Testing App</p>
     <h1>Know what's <em>really</em><br>in your food.</h1>
     <p class="hero-sub">Arsenic in baby food. Cadmium in chocolate. Lead in supplements. These contaminants don't appear on labels — but they're there. CleanLabel gives UK consumers independent lab-tested heavy metal data on everyday products.</p>
-    <div style="margin-bottom:14px;max-width:440px">
-      <div class="hero-form">
-        <input type="email" id="heroEmail" placeholder="your@email.co.uk">
-        <button onclick="heroSignup()">Get Early Access</button>
-      </div>
-      <div id="heroMsg" style="display:none;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--green);margin-top:8px;letter-spacing:.05em">✓ You're on the list — check your inbox.</div>
+    <div style="margin-bottom:14px;max-width:500px">
+      <iframe src="https://subscribe-forms.beehiiv.com/146d43d5-c4fe-49b2-9568-e4c120fe342a" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width:100%;height:76px;margin:0;border-radius:3px;background-color:transparent;box-shadow:none;max-width:100%;border:none;"></iframe>
     </div>
     <div class="trust-row">
       <span class="trust-item">Independent lab testing</span>
@@ -604,14 +600,8 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gr
           <div class="counter-bar-wrap"><div class="counter-bar"></div></div>
           <span>9% to 500 free month milestone</span>
         </div>
-        <div class="cta-form">
-          <input type="email" id="ctaEmail" placeholder="your@email.co.uk">
-          <button onclick="
-            var e=document.getElementById('ctaEmail').value;
-            if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}
-            document.getElementById('ctaForm').style.display='none';
-            document.getElementById('ctaConfirm').style.display='block';
-          ">Claim Your Spot</button>
+        <div style="max-width:500px;margin:0 auto 12px">
+          <iframe src="https://subscribe-forms.beehiiv.com/146d43d5-c4fe-49b2-9568-e4c120fe342a" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width:100%;height:76px;margin:0;border-radius:3px;background-color:transparent;box-shadow:none;max-width:100%;border:none;"></iframe>
         </div>
         <div id="ctaMsg" style="display:none;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--green);margin-top:8px;letter-spacing:.05em">✓ You're on the list — check your inbox.</div>
         <p class="cta-note">First month free · Refer 20 for lifetime access &nbsp;·&nbsp; No spam &nbsp;·&nbsp; UK GDPR compliant &nbsp;·&nbsp; Unsubscribe anytime</p>
@@ -732,29 +722,5 @@ function doSignup(email, msgId) {
   r.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function heroSignup() {
-  const email = document.getElementById('heroEmail').value;
-  if (email && email.includes('@')) {
-    window.open('https://cleanlabel.beehiiv.com/subscribe?email=' + encodeURIComponent(email), '_blank');
-  } else {
-    window.open('https://cleanlabel.beehiiv.com/subscribe', '_blank');
-  }
-}
-
-function ctaSignup() {
-  const emailEl = document.getElementById('ctaEmail');
-  const email = emailEl ? emailEl.value : '';
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  const confirmEl = document.getElementById('ctaConfirm');
-  const formEl = document.getElementById('ctaForm');
-  if (formEl) formEl.style.display = 'none';
-  if (confirmEl) confirmEl.style.display = 'block';
-  setTimeout(() => {
-    window.location.href = 'https://cleanlabel.beehiiv.com/subscribe?email=' + encodeURIComponent(email);
-  }, 2000);
-}
-
-const heroEmailEl = document.getElementById('heroEmail');
-const ctaEmailEl = document.getElementById('ctaEmail');
-if (heroEmailEl) heroEmailEl.addEventListener('keypress', e => { if (e.key === 'Enter') heroSignup(); });
-if (ctaEmailEl) ctaEmailEl.addEventListener('keypress', e => { if (e.key === 'Enter') ctaSignup(); });
+function heroSignup() {}
+function ctaSignup() {}
