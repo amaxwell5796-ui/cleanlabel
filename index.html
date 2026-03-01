@@ -615,7 +615,7 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gr
       <div id="ctaConfirm" style="display:none;background:rgba(0,232,122,0.06);border:1px solid rgba(0,232,122,0.25);border-radius:6px;padding:32px;text-align:center;margin-bottom:24px">
         <div style="font-size:2rem;margin-bottom:12px">✅</div>
         <div style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px">You're on the list.</div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--grey);line-height:1.8;letter-spacing:0.04em">Complete your signup in the tab that just opened.<br>Check your inbox for a confirmation email from CleanLabel.</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--grey);line-height:1.8;letter-spacing:0.04em">Redirecting you to confirm your email in 2 seconds...</div>
       </div>
     </div>
   </div>
@@ -738,19 +738,12 @@ function heroSignup() {
 
 function ctaSignup() {
   const email = document.getElementById('ctaEmail').value;
-  const btn = document.querySelector('#ctaForm .cta-form button');
-  btn.textContent = '✓ Opening signup...';
-  btn.style.background = '#00b05c';
-  btn.disabled = true;
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  document.getElementById('ctaForm').style.display = 'none';
+  document.getElementById('ctaConfirm').style.display = 'block';
   setTimeout(() => {
-    document.getElementById('ctaForm').style.display = 'none';
-    document.getElementById('ctaConfirm').style.display = 'block';
-  }, 600);
-  if (email && email.includes('@')) {
-    window.open('https://cleanlabel.beehiiv.com/subscribe?email=' + encodeURIComponent(email), '_blank');
-  } else {
-    window.open('https://cleanlabel.beehiiv.com/subscribe', '_blank');
-  }
+    window.location.href = 'https://cleanlabel.beehiiv.com/subscribe?email=' + encodeURIComponent(email);
+  }, 2000);
 }
 
 document.getElementById('heroEmail').addEventListener('keypress', e => { if (e.key === 'Enter') heroSignup(); });
