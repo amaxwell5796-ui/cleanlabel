@@ -737,14 +737,19 @@ function heroSignup() {
 }
 
 function ctaSignup() {
-  const email = document.getElementById('ctaEmail').value;
+  const emailEl = document.getElementById('ctaEmail');
+  const email = emailEl ? emailEl.value : '';
   if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  document.getElementById('ctaForm').style.display = 'none';
-  document.getElementById('ctaConfirm').style.display = 'block';
+  const confirmEl = document.getElementById('ctaConfirm');
+  const formEl = document.getElementById('ctaForm');
+  if (formEl) formEl.style.display = 'none';
+  if (confirmEl) confirmEl.style.display = 'block';
   setTimeout(() => {
     window.location.href = 'https://cleanlabel.beehiiv.com/subscribe?email=' + encodeURIComponent(email);
   }, 2000);
 }
 
-document.getElementById('heroEmail').addEventListener('keypress', e => { if (e.key === 'Enter') heroSignup(); });
-document.getElementById('ctaEmail').addEventListener('keypress', e => { if (e.key === 'Enter') ctaSignup(); });
+const heroEmailEl = document.getElementById('heroEmail');
+const ctaEmailEl = document.getElementById('ctaEmail');
+if (heroEmailEl) heroEmailEl.addEventListener('keypress', e => { if (e.key === 'Enter') heroSignup(); });
+if (ctaEmailEl) ctaEmailEl.addEventListener('keypress', e => { if (e.key === 'Enter') ctaSignup(); });
