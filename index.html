@@ -583,7 +583,7 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gr
       <h2>Protect your family <em>before</em> we launch</h2>
       <p class="sub-text" style="margin:0 auto 36px;text-align:center">47 people have already joined. The first 500 get their first month free. Refer 20 friends and get lifetime access.</p>
 
-      <div class="queue-reveal" id="queueReveal">
+      <div class="queue-reveal" id="queueReveal" style="display:none">
         <div class="qr-pos" id="qrPos">#312</div>
         <div class="qr-lbl">You're on the waitlist · First month free zone</div>
         <div class="qr-bar-wrap"><div class="qr-bar" id="qrBar"></div></div>
@@ -606,7 +606,13 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gr
         </div>
         <div class="cta-form">
           <input type="email" id="ctaEmail" placeholder="your@email.co.uk">
-          <button onclick="ctaSignup()">Claim Your Spot</button>
+          <button onclick="
+            var e=document.getElementById('ctaEmail').value;
+            if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}
+            document.getElementById('ctaForm').style.display='none';
+            document.getElementById('ctaConfirm').style.display='block';
+            setTimeout(function(){window.location.href='https://cleanlabel.beehiiv.com/subscribe?email='+encodeURIComponent(e);},2000);
+          ">Claim Your Spot</button>
         </div>
         <div id="ctaMsg" style="display:none;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--green);margin-top:8px;letter-spacing:.05em">✓ You're on the list — check your inbox.</div>
         <p class="cta-note">First month free · Refer 20 for lifetime access &nbsp;·&nbsp; No spam &nbsp;·&nbsp; UK GDPR compliant &nbsp;·&nbsp; Unsubscribe anytime</p>
